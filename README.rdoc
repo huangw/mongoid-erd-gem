@@ -22,10 +22,37 @@ You need to add `dot` executable in your PATH.
 
 = Class, Inherits and Fields
 
+- `class xxx:yyy`: a record xxx inherit from yyy. The first class that contains `include Mongoid::Document` on the file will be tracked. yyy will be created as a `box` node if no corresponding file found.
 
+- `field :xxx, type:yyy`: a field xxx with type yyy. `type` and `default` will be tracked.
+
+- `embeds_many/embeds_one/has_many/has_one :xxx, :as => :yyy`: field and a belong_to/embeds_many/embeds_one/has_one link to xxx
+
+- `belongs_to/embedded_in :xxx`: a field without link.
+
+Methods before `:private` keyword will also be tracked.
 
 = Special Markers
 
-`erd_xxx` triggers outputs in the output dot file.
+`erd_tag user.core` tag name of the current class (see configuration files below)
 
-[+ erd_style +] 
+`class xxx:yyy # erd{fillcolor:xxx} yyy`: yyy will become the label of the current class.
+
+`field ... # erd{...} xxx`: xxx will become the label of that field.
+
+`embeds_many ... # erd{...} yyy`: yyy will become the label of that edge.
+
+`erd -> node_name{color:yyy} label`: arbitrage edge with attributes.
+
+= Configuration Files
+
+`config/mongoid_erd_tags.yml`:
+
+    user: {shape: Mrecord}
+    user.core: {fillcolor: blue}
+
+`user.core` attributes will be merged to `user`, then should be merged into `class ... # erd{attrs}`. Those attributes will passed to dot language as the attributes associate to the class node.
+
+An other will to use tag is restrict output contains only classes with specific tag:
+
+    $ merd --tags=user
