@@ -1,0 +1,23 @@
+= Mongoid-ERD 
+
+Create model-diagram (ERD graph) via Graphviz using the mongoid's model source code.
+
+Export a executable `merd`:
+
+    $ merd | dot -Tpng > docs/erd.png
+
+or:
+
+    $ merd --model_dir=app/model | dot -Tpng > docs/erd.png
+
+You need to add `dot` executable in your PATH.
+
+= Class, Inherits and Fields
+
+
+
+= Special Markers
+
+`erd_xxx` triggers outputs in the output dot file.
+
+[+ erd_style +] 
