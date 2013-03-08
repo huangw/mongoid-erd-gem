@@ -2,7 +2,7 @@
 
 Create model-diagram (ERD graph) via Graphviz using the mongoid's model source code.
 
-Export a executable `merd`:
+Export a executable <tt>merd</tt>:
 
     $ merd | dot -Tpng > docs/erd.png
 
@@ -18,40 +18,40 @@ or
 
     $ merd --exclude=Class4,Class5
 
-You need to add `dot` executable in your PATH.
+You need to add <tt>dot</tt> executable in your PATH.
 
 = Class, Inherits and Fields
 
-- `class xxx:yyy`: a record xxx inherit from yyy. The first class that contains `include Mongoid::Document` on the file will be tracked. yyy will be created as a `box` node if no corresponding file found.
+- <tt>class xxx:yyy</tt>: a record xxx inherit from yyy. The first class that contains <tt>include Mongoid::Document</tt> on the file will be tracked. yyy will be created as a <tt>box</tt> node if no corresponding file found.
 
-- `field :xxx, type:yyy`: a field xxx with type yyy. `type` and `default` will be tracked.
+- <tt>field :xxx, type:yyy</tt>: a field xxx with type yyy. <tt>type</tt> and <tt>default</tt> will be tracked.
 
-- `embeds_many/embeds_one/has_many/has_one :xxx, :as => :yyy`: field and a belong_to/embeds_many/embeds_one/has_one link to xxx
+- <tt>embeds_many/embeds_one/has_many/has_one :xxx, :as => :yyy</tt>: field and a belong_to/embeds_many/embeds_one/has_one link to xxx
 
-- `belongs_to/embedded_in :xxx`: a field without link.
+- <tt>belongs_to/embedded_in :xxx</tt>: a field without link.
 
-Methods before `:private` keyword will also be tracked.
+Methods before <tt>:private</tt> keyword will also be tracked.
 
 = Special Markers
 
-`erd_tag user.core` tag name of the current class (see configuration files below)
+<tt>erd_tag user.core</tt> tag name of the current class (see configuration files below)
 
-`class xxx:yyy # erd{fillcolor:xxx} yyy`: yyy will become the label of the current class.
+<tt>class xxx:yyy # erd{fillcolor:xxx} yyy</tt>: yyy will become the label of the current class.
 
-`field ... # erd{...} xxx`: xxx will become the label of that field.
+<tt>field ... # erd{...} xxx</tt>: xxx will become the label of that field.
 
-`embeds_many ... # erd{...} yyy`: yyy will become the label of that edge.
+<tt>embeds_many ... # erd{...} yyy</tt>: yyy will become the label of that edge.
 
-`erd -> node_name{color:yyy} label`: arbitrage edge with attributes.
+<tt>erd -> node_name{color:yyy} label</tt>: arbitrage edge with attributes.
 
 = Configuration Files
 
-`config/mongoid_erd_tags.yml`:
+<tt>config/mongoid_erd_tags.yml</tt>:
 
     user: {shape: Mrecord}
     user.core: {fillcolor: blue}
 
-`user.core` attributes will be merged to `user`, then should be merged into `class ... # erd{attrs}`. Those attributes will passed to dot language as the attributes associate to the class node.
+<tt>user.core</tt> attributes will be merged to <tt>user</tt>, then should be merged into <tt>class ... # erd{attrs}</tt>. Those attributes will passed to dot language as the attributes associate to the class node.
 
 An other will to use tag is restrict output contains only classes with specific tag:
 
