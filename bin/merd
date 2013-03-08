@@ -1,3 +1,5 @@
 #!/usr/bin/env ruby
+# vim :set syn=ruby
 
 require "mongoid-erd"
+
