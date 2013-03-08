@@ -10,6 +10,14 @@ or:
 
     $ merd --model_dir=app/model | dot -Tpng > docs/erd.png
 
+You can also create only a subset of models by:
+
+    $ merd --include=Class1,Class2
+
+or 
+
+    $ merd --exclude=Class4,Class5
+
 You need to add `dot` executable in your PATH.
 
 = Class, Inherits and Fields

@@ -12,6 +12,7 @@ Gem::Specification.new 'mongoid-erd', Rviz::VERSION do |s|
   s.rdoc_options      = %w[--line-numbers --inline-source --title Rviz --main README.rdoc --encoding=UTF-8]
 
   s.add_dependency 'rviz'
+  s.add_dependency 'active_support'
   s.add_development_dependency 'rspec', '~> 2.5'
 end
 
