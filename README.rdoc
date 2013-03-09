@@ -57,4 +57,4 @@ Methods before <tt>:private</tt> keyword will also be tracked.
 
 An other will to use tag is restrict output contains only classes with specific tag:
 
-    $ merd --tags=user
+    $ merd --tag=user

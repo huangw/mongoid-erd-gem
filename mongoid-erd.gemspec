@@ -1,5 +1,4 @@
 $LOAD_PATH.unshift File.expand_path('../lib', __FILE__)
-require 'mongoid-erd/version'
 
 Gem::Specification.new 'mongoid-erd', '0.0.1' do |s|
   s.executables       << "merd"
