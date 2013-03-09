@@ -1,0 +1,6 @@
+title: Model Diagrams
+tags:
+  _default: {shape: record, fillcolor: yellow, style: filled, color: blue}
+  user: {fillcolor: gold, color: black}
+  user.core: {color: red}
+  pix: {style: pix}

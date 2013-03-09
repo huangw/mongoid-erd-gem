@@ -14,6 +14,6 @@ Gem::Specification.new 'mongoid-erd', '0.0.1' do |s|
 
   s.add_dependency 'rviz'
   s.add_dependency 'active_support'
-  s.add_development_dependency 'rspec', '~> 2.5'
+  # s.add_development_dependency 'rspec', '~> 2.5'
 end
 

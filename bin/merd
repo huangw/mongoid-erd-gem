@@ -1,5 +1,59 @@
 #!/usr/bin/env ruby
 # vim :set syn=ruby
 
-require "mongoid-erd"
+$: << 'lib'
 
+require "mongoid_erd"
+require "optparse"
+require "active_support/core_ext/string/inflections"
+
+options = {}
+
+optparse = OptionParser.new do |opts|
+  opts.banner = "Usage: merd [options]"
+
+  # configuration file
+  options[:conf_file] = "config/mongoid_erd.yml"
+  opts.on('-c', '--conf_file FILE', 'use configuration file other than config/mongoid_erd.yml' ) do |file|
+    options[:conf_file] = file
+  end
+
+  # directory contains model files
+  options[:model_dir] = "app/models"
+  opts.on('-d', '--model_dir DIR', 'parse model directory other than app/models') do |dir|
+    options[:model_dir] = dir
+  end
+
+  # include/exclude model list
+  options[:include] = []
+  opts.on('-i', '--include CLASS,LIST', 'include only specified models') do |list|
+    options[:include] = list.split(/\s*,\s*/).map{|s| s.underscore}
+  end
+
+  options[:exclude] = []
+  opts.on('-e', '--exclude CLASS,LIST', 'exclude those specified models') do |list|
+    options[:exclude] = list.split(/\s*,\s*/).map{|s| s.underscore}
+  end
+
+  # restrict output for models with those tag only
+  options[:tag] = []
+  opts.on('-t', '--tag TAG,LIST', 'restrict output for models with those tag only') do |list|
+    options[:tag] = list.split(/\s*,\s*/)
+  end
+
+  # output file for dot source
+  options[:output] = ''
+  opts.on('-o', '--output FILE', 'save dot language source to a file other than STDOUT') do |output|
+    options[:output] = output
+  end
+
+  opts.on_tail( '-h', '--help', 'Display this screen' ) do
+    puts opts
+    exit
+  end
+end
+
+optparse.parse!(ARGV)
+config = options.select {|k,v| %w[tag conf_file model_dir exclude include output].include? k.to_s}
+
+MongoidErd.new(config).parse.output()

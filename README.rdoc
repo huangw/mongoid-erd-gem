@@ -8,7 +8,7 @@ Export a executable <tt>merd</tt>:
 
 or:
 
-    $ merd --model_dir=app/model | dot -Tpng > docs/erd.png
+    $ merd --model_dir=other/models | dot -Tpng > docs/erd.png
 
 You can also create only a subset of models by:
 
@@ -36,6 +36,8 @@ Methods before <tt>:private</tt> keyword will also be tracked.
 
 <tt>erd_tag user.core</tt> tag name of the current class (see configuration files below)
 
+<tt>erd{}</tt>
+
 <tt>class xxx:yyy # erd{fillcolor:xxx} yyy</tt>: yyy will become the label of the current class.
 
 <tt>field ... # erd{...} xxx</tt>: xxx will become the label of that field.
@@ -46,7 +48,7 @@ Methods before <tt>:private</tt> keyword will also be tracked.
 
 = Configuration Files
 
-<tt>config/mongoid_erd_tags.yml</tt>:
+<tt>config/mongoid_erd.yml</tt>:
 
     user: {shape: Mrecord}
     user.core: {fillcolor: blue}
