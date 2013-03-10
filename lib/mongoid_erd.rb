@@ -154,6 +154,15 @@ class MongoidErd
           self.parse_erd field_, line # parse erd attr and label
           crt_model.fields << field_ 
         end
+
+        if /\s*as_enum\s+\:(?<name_>\w+)\s*\,\s*(?<enum_>[^#]+)/ =~ line
+          field_ = Fields.new
+          field_.name = name_
+          field_.type = "[ENUM] " + enum_ 
+          self.parse_erd field_, line # parse erd attr and label
+          crt_model.fields << field_ 
+        end
+
       end # open and parse one file
 
       # assign attributes at the last moment
