@@ -82,7 +82,7 @@ class MongoidErd
         line.chomp!
 
         # erd_tag and attr
-        if /^[\#\s]*erd_tag\s+(?<tag_>[\w\.]+)/ =~ line
+        if /^[\#\s]*erd_tag\:?\s*(?<tag_>[\w\.]+)/ =~ line
           crt_model.tag = tag_ 
           crt_model.attrs = @config[:tags][tag_]
         end
