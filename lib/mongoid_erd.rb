@@ -179,7 +179,7 @@ class MongoidErd
   end
 
   def output 
-    g = Rviz::Graph.new @config[:title], {rankdir: 'LR'}
+    g = Rviz::Graph.new @config[:title], {rankdir: 'LR', dpi: 300}
 
     @models.each do |mname, model|
       g.add_record(model.name, model.attrs)
