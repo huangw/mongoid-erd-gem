@@ -134,9 +134,9 @@ class MongoidErd
           field_.name = "#{rel_} (as #{as_})" if as_
           self.parse_erd field_, line # parse erd attr and label
           crt_model.fields << field_ 
-          unless %w[belongs_to embedded_in].include? rel_
-            field_.edge = [name_, '', {label: rel_}]
-          end
+          #if %w[belongs_to embedded_in embeds_one has_one].include? rel_
+          field_.edge = [name_, '', {label: rel_, arrowhead: 'onormal'}]
+          #end
         end
         
         # common extension field
