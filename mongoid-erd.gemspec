@@ -1,6 +1,6 @@
 $LOAD_PATH.unshift File.expand_path('../lib', __FILE__)
 
-Gem::Specification.new 'mongoid-erd', '0.0.5' do |s|
+Gem::Specification.new 'mongoid-erd', '0.0.6' do |s|
   s.executables       << "merd"
   s.description       = "Create model diagram graph (ERD graph) in graphviz's dot language"
   s.summary           = "Mongoid ERD diagram creator"
