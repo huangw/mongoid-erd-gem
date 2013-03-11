@@ -20,7 +20,7 @@ class Model
   end
 
   def title
-    "- [#{name}:#{erd_label}] -"
+    "- [#{name.camelize}:#{erd_label}] -"
   end
 end
 
