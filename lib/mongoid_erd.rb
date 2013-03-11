@@ -208,7 +208,7 @@ class MongoidErd
       # relations
       if model.parent
         unless @models[model.parent]
-          g.add(model.parent, 'oval', {style:'filled', fillcolor:'grey', color:'grey'})
+          g.add(model.parent.camelize, 'oval', {style:'filled', fillcolor:'grey', color:'grey'})
         end
         g.link(model.name.camelize, model.title, model.parent.camelize, '', {arrowhead: 'onormal'})
       end
