@@ -135,7 +135,7 @@ class MongoidErd
           self.parse_erd field_, line # parse erd attr and label
           crt_model.fields << field_ 
           #if %w[belongs_to embedded_in embeds_one has_one].include? rel_
-          field_.edge = [name_, '', {label: rel_, arrowhead: 'onormal'}]
+          field_.edge = [name_, '', {label: rel_, arrowhead: 'normal'}]
           #end
         end
         
