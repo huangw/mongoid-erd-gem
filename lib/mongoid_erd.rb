@@ -20,7 +20,7 @@ class Model
   end
 
   def title
-    "- [#{name}:#{erd_label}] -"
+    "- [#{name.camelize}:#{erd_label}] -"
   end
 end
 
@@ -198,7 +198,7 @@ class MongoidErd
         if field.edge
           to_node, to_anchor, attrs = field.edge[0].underscore, field.edge[1], field.edge[2]
           unless @models[to_node]
-            g.add(to_node, 'oval', {style:'filled', fillcolor:'grey', color:'grey'})
+            g.add(to_node.camelize, 'oval', {style:'filled', fillcolor:'grey', color:'grey'})
             to_anchor = ''
           end
           g.link(model.name.camelize, field.as_row, to_node.camelize, to_anchor, attrs)
