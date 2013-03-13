@@ -191,26 +191,26 @@ class MongoidErd
     g = Rviz::Graph.new @config[:title], {rankdir: 'LR', dpi: 300}
 
     @models.each do |mname, model|
-      g.add_record(model.name, model.attrs)
-      g.node(model.name).add_row(model.title, true)
+      g.add_record(model.name.camelize, model.attrs)
+      g.node(model.name.camelize).add_row(model.title, true)
       model.fields.each do |field|
-        g.node(model.name).add_row(field.as_row, true, 'l')
+        g.node(model.name.camelize).add_row(field.as_row, true, 'l')
         if field.edge
           to_node, to_anchor, attrs = field.edge[0].underscore, field.edge[1], field.edge[2]
           unless @models[to_node]
             g.add(to_node, 'oval', {style:'filled', fillcolor:'grey', color:'grey'})
             to_anchor = ''
           end
-          g.link(model.name, field.as_row, to_node, to_anchor, attrs)
+          g.link(model.name.camelize, field.as_row, to_node.camelize, to_anchor, attrs)
         end
       end
 
       # relations
       if model.parent
         unless @models[model.parent]
-          g.add(model.parent, 'oval', {style:'filled', fillcolor:'grey', color:'grey'})
+          g.add(model.parent.camelize, 'oval', {style:'filled', fillcolor:'grey', color:'grey'})
         end
-        g.link(model.name, model.title, model.parent, '', {arrowhead: 'onormal'})
+        g.link(model.name.camelize, model.title, model.parent.camelize, '', {arrowhead: 'onormal'})
       end
     end
 
