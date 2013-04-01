@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
-# vim :set syn=ruby
+# vim: syn=ruby
 
 $: << 'lib'
 
